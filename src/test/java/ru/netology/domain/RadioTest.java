@@ -25,26 +25,28 @@ class RadioTest {
 
     @ParameterizedTest
     @CsvSource(
-            value = {"10, 0",
-                    "0, 1",
+            value = {"4, 5",
                     "9, 0"
-            }
-    )
-    void shouldPressPrev(int currentRadioWave, int expected) {
-        Radio radio = new Radio();
-        assertEquals(expected, radio.prev(currentRadioWave));
-    }
-
-    @ParameterizedTest
-    @CsvSource(
-            value = {"-1, 9",
-                    "0, 9",
-                    "4, 5"
             }
     )
     void shouldPressNext(int currentRadioWave, int expected) {
         Radio radio = new Radio();
-        assertEquals(expected, radio.next(currentRadioWave));
+        radio.setCurrentRadioWave(currentRadioWave);
+        radio.next();
+        assertEquals(expected, radio.getCurrentRadioWave());
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+            value = {"0, 9",
+                    "4, 3"
+            }
+    )
+    void shouldPressPrev(int currentRadioWave, int expected) {
+        Radio radio = new Radio();
+        radio.setCurrentRadioWave(currentRadioWave);
+        radio.prev();
+        assertEquals(expected, radio.getCurrentRadioWave());
     }
 
     @ParameterizedTest
@@ -63,24 +65,28 @@ class RadioTest {
 
     @ParameterizedTest
     @CsvSource(
-            value = {"-1, 0",
-                    "0, 1",
-                    "5, 6"}
+            value = {"10,9",
+                    "0, 0",
+                    "5, 4"}
     )
-    public void shouldSwitchCurrentSoundMinWave(int currentSoundValue, int expected) {
+    public void shouldSwitchCurrentSoundValue(int currentSoundValue, int expected) {
         Radio radio = new Radio();
-        assertEquals(expected, radio.minus(currentSoundValue));
+        radio.setCurrentSoundValue(currentSoundValue);
+        radio.minus();
+        int actual = radio.getCurrentSoundValue();
+        assertEquals(expected, actual);
     }
 
     @ParameterizedTest
     @CsvSource(
-            value = {"11, 10",
-                    "10, 10",
+            value = {"10, 10",
                     "5, 6"}
     )
-    public void shouldSwitchCurrentSoundMaxWave(int currentSoundValue, int expected) {
+    public void shouldSwitchCurrentSoundMaxValue(int currentSoundValue, int expected) {
         Radio radio = new Radio();
-        assertEquals(expected, radio.plus(currentSoundValue));
+        radio.setCurrentSoundValue(currentSoundValue);
+        radio.plus();
+        assertEquals(expected, radio.getCurrentSoundValue());
     }
 
 }

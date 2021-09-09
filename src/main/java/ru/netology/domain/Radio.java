@@ -19,7 +19,7 @@ public class Radio {
         return currentRadioWave;
     }
 
-    public int prev(int currentRadioWave) {
+    public int next() {
         if (currentRadioWave < maxRadioWave) {
             currentRadioWave = currentRadioWave + 1;
         } else {
@@ -28,9 +28,9 @@ public class Radio {
         return currentRadioWave;
     }
 
-    public int next(int currentRadioWave) {
+    public int prev() {
         if (currentRadioWave > minRadioWave) {
-            currentRadioWave = currentRadioWave + 1;
+            currentRadioWave = currentRadioWave - 1;
         } else {
             currentRadioWave = maxRadioWave;
         }
@@ -48,7 +48,7 @@ public class Radio {
         return currentSoundValue;
     }
 
-    public int plus(int currentSoundValue) {
+    public int plus() {
         if (currentSoundValue < maxSoundValue) {
             currentSoundValue = currentSoundValue + 1;
         } else {
@@ -57,10 +57,10 @@ public class Radio {
         return currentSoundValue;
     }
 
-    public int minus(int currentSoundValue) {
-        if (currentSoundValue >= minSoundValue) {
-            currentSoundValue = currentSoundValue + 1;
-        } else {
+    public int minus() {
+        if (currentSoundValue > minSoundValue) {
+            currentSoundValue = currentSoundValue - 1;
+        } else{
             currentSoundValue = minSoundValue;
         }
         return currentSoundValue;
