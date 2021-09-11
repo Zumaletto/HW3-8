@@ -88,5 +88,4 @@ class RadioTest {
         radio.plus();
         assertEquals(expected, radio.getCurrentSoundValue());
     }
-
 }
